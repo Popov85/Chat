@@ -17,7 +17,13 @@ public class Main extends AbstractWebSocketMessageBrokerConfigurer {
     }
 
     @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/topic");
+        config.setApplicationDestinationPrefixes("/app");
+    }
+
+    @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/color").withSockJS();
+        registry.addEndpoint("/chat").withSockJS();
     }
 }
